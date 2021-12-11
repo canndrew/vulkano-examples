@@ -59,7 +59,6 @@ fn main() {
     let surface = WindowBuilder::new()
         .build_vk_surface(&event_loop, instance.clone())
         .unwrap();
-    let dimensions: [u32; 2] = surface.window().inner_size().into();
 
     let queue_family = physical
         .queue_families()
@@ -81,6 +80,7 @@ fn main() {
 
     let queue = queues.next().unwrap();
 
+    let dimensions: [u32; 2] = surface.window().inner_size().into();
     let (mut swapchain, images) = {
         let caps = surface.capabilities(physical).unwrap();
         let format = caps.supported_formats[0].0;
